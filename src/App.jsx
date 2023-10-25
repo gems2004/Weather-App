@@ -1,8 +1,14 @@
+import { Route, Routes } from "react-router-dom";
 import { useGetCurrentWeatherByLocationQuery } from "./features/api/api";
+import LandingPage from "./pages/LandingPage";
 function App() {
-  const { data } = useGetCurrentWeatherByLocationQuery();
-  console.log(data);
-  return <></>;
+  return (
+    <>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+      </Routes>
+    </>
+  );
 }
 
 export default App;
