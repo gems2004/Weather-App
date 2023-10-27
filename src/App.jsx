@@ -1,14 +1,16 @@
 import { Route, Routes } from "react-router-dom";
-import LandingPage from "./pages/LandingPage";
-import SearchResults from "./pages/SearchResults";
 import { useSelector } from "react-redux";
+import Search from "./features/search/search";
+import Results from "./features/search/Results";
+import WeatherData from "./features/weather/WeatherData";
 
 function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/results" element={<SearchResults />} />
+        <Route path="/" element={<Search />} />
+        <Route path="/results/:query" element={<Results />} />
+        <Route path="/mainpage/:city" element={<WeatherData />} />
       </Routes>
     </>
   );

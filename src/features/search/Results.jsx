@@ -1,16 +1,40 @@
-import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { getSearchData } from "./searchSlice";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useGetLocationByNameQuery } from "../api/api";
 const Results = () => {
+  const { query } = useParams();
+  const { data, isLoading } = useGetLocationByNameQuery(query);
   const navigate = useNavigate();
-  const searchData = useSelector(getSearchData);
-  useEffect(() => {
-    if (searchData.searchQuery == "" && searchData.results == null) {
-      navigate("/");
-    }
-  }, [searchData]);
-  return <></>;
+  console.log(data);
+
+  if (isLoading) {
+    return <>pls wait</>;
+  }
+  return (
+    <>
+      <section className="flex flex-col items-center">
+        {data.map((item) => {
+          return (
+            <li
+              key={item.id}
+              className="list-none shadow-2xl my-10 rounded-full h-32 w-11/12 grid grid-cols-2 hover:cursor-pointer"
+              onClick={() => {
+                navigate(`/mainpage/${item.name}`);
+              }}
+            >
+              <span className="justify-self-center place-self-center w-32 text-center">
+                {item.country}
+              </span>
+              <div className="place-self-center text-center mr-14">
+                <span>{item.name}</span>
+                <span>{item.region}</span>
+              </div>
+            </li>
+          );
+        })}
+      </section>
+    </>
+  );
 };
 
 export default Results;

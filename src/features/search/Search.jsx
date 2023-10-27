@@ -3,37 +3,26 @@ import { weatherApi, ipApi } from "../api/api";
 import Logo from "../../assets/Logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
-import { getSearchData, passSearchData, passSearchQuery } from "./searchSlice";
-import { useDispatch, useSelector } from "react-redux";
+
 import { useNavigate } from "react-router-dom";
 const Search = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
-  const [triggerSearch, { data: weather }] =
-    weatherApi.endpoints.getLocationByName.useLazyQuery();
   const [triggerSearchIp, { data: weatherIp }] =
     weatherApi.endpoints.getLocationByIp.useLazyQuery();
   const [triggerIp, { data: ip }] = ipApi.endpoints.getIp.useLazyQuery();
   function searchClickHandler(e) {
     e.preventDefault();
-    dispatch(passSearchQuery(searchQuery));
-    triggerSearch(searchQuery);
+    if (searchQuery.length < 3) {
+      return alert("Pls provide at least 3 characters");
+    } else {
+      navigate(`results/${searchQuery}`);
+    }
   }
-  function ipSearchClickHandler() {
+  function ipSearchClickHandler(e) {
+    e.preventDefault();
     triggerIp();
   }
-  console.log(ip);
-  console.log(weatherIp);
-  useEffect(() => {
-    if (weather) {
-      dispatch(passSearchData(weather));
-      navigate(`/results`);
-    }
-    if (ip) {
-      triggerSearchIp(ip.ip);
-    }
-  }, [weather, ip]);
   return (
     <section className="grid place-content-center h-screen">
       <span className="justify-self-center text-4xl font-bold mb-5 opacity-90 drop-shadow-xl">

@@ -10,6 +10,10 @@ export const weatherApi = createApi({
       query: (search) =>
         `/search.json?key=${import.meta.env.VITE_API_KEY}&q=${search}`,
     }),
+    getCurrentWeatherData: builder.query({
+      query: (city) =>
+        `/current.json?key=${import.meta.env.VITE_API_KEY}&q=${city}`,
+    }),
   }),
 });
 export const ipApi = createApi({
@@ -21,6 +25,9 @@ export const ipApi = createApi({
     }),
   }),
 });
-export const { useLazyGetLocationByipQuery, useLazyGetLocationByNameQuery } =
-  weatherApi;
+export const {
+  useLazyGetLocationByipQuery,
+  useGetLocationByNameQuery,
+  useGetCurrentWeatherDataQuery,
+} = weatherApi;
 export const { useLazyGetIpQuery } = ipApi;
