@@ -13,7 +13,7 @@ const Results = () => {
   return (
     <>
       <section className="flex flex-col items-center">
-        {data.map((item) => {
+        {data?.map((item) => {
           return (
             <li
               key={item.id}
