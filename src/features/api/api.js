@@ -26,7 +26,7 @@ export const ipApi = createApi({
   }),
 });
 export const {
-  useLazyGetLocationByipQuery,
+  useLazyGetLocationByIpQuery,
   useGetLocationByNameQuery,
   useGetCurrentWeatherDataQuery,
 } = weatherApi;
