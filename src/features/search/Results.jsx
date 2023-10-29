@@ -1,6 +1,8 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useGetLocationByNameQuery } from "../api/api";
+import Lottie from "lottie-react";
+import Loader from "../../assets/loader.json";
 const Results = () => {
   const { query } = useParams();
   const { data, isLoading } = useGetLocationByNameQuery(query);
@@ -8,7 +10,11 @@ const Results = () => {
   console.log(data);
 
   if (isLoading) {
-    return <>pls wait</>;
+    return (
+      <div className="grid place-content-center h-screen">
+        <Lottie className="w-72" animationData={Loader} />
+      </div>
+    );
   }
   return (
     <>
