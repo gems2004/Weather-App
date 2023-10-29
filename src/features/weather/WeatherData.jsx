@@ -6,8 +6,13 @@ const WeatherData = () => {
   const { city } = useParams();
   const { data, isLoading } = useGetCurrentWeatherDataQuery(city);
   console.log(data);
+
   if (isLoading) {
-    return <>pls wait</>;
+    return (
+      <div className="grid place-content-center h-screen">
+        <Lottie className="w-72" animationData={Loader} />
+      </div>
+    );
   }
   return <></>;
 };
