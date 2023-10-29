@@ -19,7 +19,7 @@ const Results = () => {
               key={item.id}
               className="list-none shadow-2xl my-10 rounded-full h-32 w-11/12 grid grid-cols-2 hover:cursor-pointer"
               onClick={() => {
-                navigate(`/mainpage/${item.name}`);
+                navigate(`/mainPage/${item.name}`);
               }}
             >
               <span className="justify-self-center place-self-center w-32 text-center">
