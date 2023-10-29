@@ -1,8 +1,7 @@
 import { Route, Routes } from "react-router-dom";
-import { useSelector } from "react-redux";
-import Search from "./features/search/search";
+import Search from "./features/search/Search";
 import Results from "./features/search/Results";
-import WeatherData from "./features/weather/WeatherData";
+import WeatherDataLayout from "./features/weather/WeatherDataLayout";
 
 function App() {
   return (
@@ -10,7 +9,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Search />} />
         <Route path="/results/:query" element={<Results />} />
-        <Route path="/mainpage/:city" element={<WeatherData />} />
+        <Route path="/mainPage/:city" element={<WeatherDataLayout />} />
       </Routes>
     </>
   );
