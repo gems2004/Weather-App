@@ -28,11 +28,20 @@ const Search = () => {
     e.preventDefault();
     triggerIp();
   }
-
+  useEffect(() => {
+    if (ip) {
+      triggerSearchIp(ip.ip);
+    }
+    if (ip && weatherIp) {
+      navigate(`/mainPage/${weatherIp.city}`);
+    }
+  }, [ip, weatherIp]);
+  console.log(ip);
+  console.log(weatherIp);
   return (
-    <section className="flex flex-col justify-center items-center h-screen">
-      <div className="flex flex-col justify-center items-center w-4/5 gap-6">
-        <h1 className="text-3xl font-bold">Weather App</h1>
+    <section className="flex flex-col justify-center items-center h-screen bg-[url('/src/assets/Background.png')]">
+      <div className="flex flex-col justify-center items-center w-4/5 gap-6 bg-white rounded-2xl shadow-2xl">
+        <h1 className="text-3xl font-bold drop-shadow-2xl">Weather App</h1>
         <img src={Logo} width={200} alt="Logo" />
 
         <form className="flex flex-col items-center justify-center gap-4 w-3/4">
@@ -51,6 +60,7 @@ const Search = () => {
               <FontAwesomeIcon
                 icon={faLocationDot}
                 style={{ color: "#000000" }}
+                onClick={ipSearchClickHandler}
               />
             </span>
             <input
