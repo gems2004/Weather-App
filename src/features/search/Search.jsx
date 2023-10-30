@@ -14,6 +14,7 @@ const Search = () => {
   const [triggerSearchIp, { data: weatherIp }] =
     weatherApi.endpoints.getLocationByIp.useLazyQuery();
   const [triggerIp, { data: ip }] = ipApi.endpoints.getIp.useLazyQuery();
+  console.log(ip);
 
   function searchClickHandler(e) {
     e.preventDefault();
@@ -29,8 +30,8 @@ const Search = () => {
   }
 
   return (
-    <section className="flex flex-col justify-center items-center h-[100vh]">
-      <div className="flex flex-col justify-center items-center gap-6 w-[400px] h-[500px]">
+    <section className="flex flex-col justify-center items-center h-screen">
+      <div className="flex flex-col justify-center items-center w-4/5 gap-6">
         <h1 className="text-3xl font-bold">Weather App</h1>
         <img src={Logo} width={200} alt="Logo" />
 
@@ -42,7 +43,7 @@ const Search = () => {
               Enter at least three characters
             </span>
           )}
-          <div className="w-3/4 relative">
+          <div className="w-full relative">
             <span
               className="absolute right-[10px] top-[5px] hover:cursor-pointer"
               onClick={ipSearchClickHandler}
@@ -62,7 +63,7 @@ const Search = () => {
             />
           </div>
           <button
-            className="w-3/4 bg-blue-700 hover:bg-blue-900 text-white rounded-md py-1 active:opacity-40 transition-all ease-in-out"
+            className="w-full bg-blue-700 hover:bg-blue-900 text-white rounded-md py-1 active:opacity-40 transition-all ease-in-out"
             onClick={searchClickHandler}
           >
             Search
