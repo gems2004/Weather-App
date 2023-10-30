@@ -1,6 +1,12 @@
 import React from "react";
-import { faDroplet, faSun, faWind } from "@fortawesome/free-solid-svg-icons";
+import {
+  faDroplet,
+  faMoon,
+  faSun,
+  faWind,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import WeatherIcon from "./WeatherIcon";
 
 const WeatherData = ({ weather, location, american, astronomy }) => {
   // console.log(weather);
@@ -37,13 +43,13 @@ const WeatherData = ({ weather, location, american, astronomy }) => {
         <>
           <FontAwesomeIcon icon={faSun} />
           <p>Sunset:</p>
-          <p>{astronomy.sunset}</p>
+          <p>{astronomy?.sunset}</p>
         </>
       ) : (
         <>
           <FontAwesomeIcon icon={faMoon} />
           <p>Sunrise:</p>
-          <p>{astronomy.sunrise}</p>
+          <p>{astronomy?.sunrise}</p>
         </>
       )}
     </div>
@@ -60,11 +66,11 @@ const WeatherData = ({ weather, location, american, astronomy }) => {
             <span>{weather.is_day === 1 ? "AM" : "PM"}</span>
           </div>
         </div>
-        <div className="flex items-center justify-center grow-0 bg-white ml-[-100px] pl-28 rounded-r-[100px] mt-6">
+        <div className="flex items-center justify-center gap-4 bg-white -ml-24 mt-6 pl-28 py-8 rounded-r-[100px]">
           <p className="text-4xl font-semibold">
             {american ? ` ${weather.temp_f}°F` : ` ${weather.temp_c}°C`}
           </p>
-          <img src={weather.condition.icon} width="100px" />
+          <WeatherIcon condition={weather.condition.text} width="150px" />
         </div>
       </section>
       <section className="absolute bottom-10">
