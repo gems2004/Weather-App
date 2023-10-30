@@ -40,7 +40,7 @@ const Search = () => {
   console.log(weatherIp);
   return (
     <section className="flex flex-col justify-center items-center h-screen bg-[url('/src/assets/Background.png')]">
-      <div className="flex flex-col justify-center items-center w-4/5 gap-6 bg-white rounded-2xl shadow-2xl">
+      <div className="flex flex-col justify-center items-center w-4/5 gap-6 bg-livid">
         <h1 className="text-3xl font-bold drop-shadow-2xl">Weather App</h1>
         <img src={Logo} width={200} alt="Logo" />
 
