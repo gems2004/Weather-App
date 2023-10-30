@@ -3,7 +3,6 @@ import CurrentWeatherData from "./CurrentWeatherData";
 import { useParams } from "react-router-dom";
 import {
   useGetAstronomyDataQuery,
-  useGetCurrentWeatherDataQuery,
   useGetForecastWeatherDataQuery,
 } from "../api/api";
 import ForecastWeatherData from "./ForecastWeatherData";
@@ -34,7 +33,7 @@ function WeatherDataLayout() {
       weather={data.current}
       location={data.location}
       american={american}
-      astronomy={astronomy.astronomy.astro}
+      astronomy={astronomy?.astronomy?.astro}
     />
   ) : (
     <p>Loading...</p>
@@ -58,7 +57,9 @@ function WeatherDataLayout() {
       <div className="text-center pt-4">
         <FontAwesomeIcon icon={faChevronDown} />
       </div>
-      <section className="mx-6 sm:mx-12 my-8">{forecast}</section>
+      <section draggable={false} className="mx-6 sm:mx-12 my-8 select-none">
+        {forecast}
+      </section>
     </>
   );
 }
