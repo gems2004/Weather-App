@@ -1,8 +1,8 @@
 import React from "react";
 import {
-  faDroplet,
   faMoon,
   faSun,
+  faWater,
   faWind,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -33,7 +33,7 @@ const WeatherData = ({ weather, location, american, astronomy }) => {
   );
   const humidity = (
     <div className="flex flex-col justify-center items-center border-x-2 border-black w-1/4 min-h-[65px]">
-      <FontAwesomeIcon icon={faDroplet} />
+      <FontAwesomeIcon icon={faWater} />
       <p className="mx-8">{weather.humidity}%</p>
     </div>
   );
