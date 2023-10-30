@@ -30,7 +30,7 @@ const Search = () => {
 
   return (
     <section className="flex flex-col justify-center items-center h-[100vh]">
-      <div className="flex flex-col justify-center items-center gap-6 shadow-2xl rounded-xl w-[400px] h-[500px]">
+      <div className="flex flex-col justify-center items-center gap-6 w-[400px] h-[500px]">
         <h1 className="text-3xl font-bold">Weather App</h1>
         <img src={Logo} width={200} alt="Logo" />
 
