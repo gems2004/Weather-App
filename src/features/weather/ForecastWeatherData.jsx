@@ -1,7 +1,7 @@
 import React from "react";
 import ForecastWeatherCard from "./ForecastWeatherCard";
 
-function ForecastWeatherData({ forecast, american }) {
+function ForecastWeatherData({ forecast, options }) {
   // console.log(forecast);
   return (
     <>
@@ -9,7 +9,7 @@ function ForecastWeatherData({ forecast, american }) {
         return (
           <ForecastWeatherCard
             forecastDay={day}
-            american={american}
+            options={options}
             index={index}
             key={day.date}
           />

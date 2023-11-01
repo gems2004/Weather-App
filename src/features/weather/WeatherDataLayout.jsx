@@ -12,6 +12,13 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 function WeatherDataLayout() {
   const { city } = useParams();
 
+  const [options, setOptions] = useState({
+    isClicked: false,
+    isF: false,
+    isMph: false,
+    is24: false,
+  });
+
   const year = new Date().getFullYear();
   let month = new Date().getMonth() + 1;
   month < 10 ? (month = `0${month}`) : month;
@@ -22,39 +29,27 @@ function WeatherDataLayout() {
   const { data } = useGetForecastWeatherDataQuery(city);
   const { data: astronomy } = useGetAstronomyDataQuery(city, date);
 
-  const [american, setAmerican] = useState(false);
-
-  function switchMesTypes() {
-    setAmerican((prev) => !prev);
-  }
-
   const current = data?.current ? (
     <CurrentWeatherData
       weather={data.current}
       location={data.location}
-      american={american}
+      options={options}
+      setOptions={setOptions}
       astronomy={astronomy?.astronomy?.astro}
     />
   ) : (
     <p>Loading...</p>
   );
   const forecast = data?.forecast ? (
-    <ForecastWeatherData forecast={data.forecast} american={american} />
+    <ForecastWeatherData forecast={data.forecast} options={options} />
   ) : (
     <p>Loading</p>
   );
 
   return (
     <>
-      <button
-        onClick={switchMesTypes}
-        className="bg-blue-700 hover:bg-blue-900 text-white rounded-md py-1 px-4 active:opacity-40 transition-all ease-in-out absolute "
-      >
-        {american ? "Miles" : "Metric"}
-      </button>
-
       <>{current}</>
-      <div className="text-center pt-4">
+      <div className="text-center">
         <FontAwesomeIcon icon={faChevronDown} />
       </div>
       <section draggable={false} className="mx-6 sm:mx-12 my-8 select-none">

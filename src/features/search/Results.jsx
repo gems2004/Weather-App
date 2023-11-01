@@ -19,7 +19,7 @@ const Results = () => {
       </div>
     );
   }
-  if (!data.length && !isLoading) {
+  if (!data?.length && !isLoading) {
     return (
       <div className="w-screen h-screen flex flex-col justify-center items-center gap-8">
         <p className="text-2xl font-bold">Nothing found!</p>

@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import WeatherIcon from "./WeatherIcon";
 
-function ForecastWeatherCard({ forecastDay, american, index }) {
+function ForecastWeatherCard({ forecastDay, options, index }) {
   const [isExpanded, setIsExpanded] = useState(false);
   // console.log(forecastDay);
   let [d, m, y] = forecastDay.date.split("-");
@@ -24,7 +24,7 @@ function ForecastWeatherCard({ forecastDay, american, index }) {
       <div className="flex items-center gap-2">
         <FontAwesomeIcon icon={faTemperatureUp} />
         <p>
-          {american
+          {options.isF
             ? `${forecastDay.day.maxtemp_f}°F`
             : `${forecastDay.day.maxtemp_c}°C`}
         </p>
@@ -32,7 +32,7 @@ function ForecastWeatherCard({ forecastDay, american, index }) {
       <div className="flex items-center gap-2">
         <FontAwesomeIcon icon={faTemperatureDown} />
         <p>
-          {american
+          {options.isF
             ? `${forecastDay.day.mintemp_f}°F`
             : `${forecastDay.day.mintemp_c}°C`}
         </p>
@@ -43,7 +43,7 @@ function ForecastWeatherCard({ forecastDay, american, index }) {
     <div className="flex items-center gap-2">
       <FontAwesomeIcon icon={faWind} />
       <p>
-        {american
+        {options.isMph
           ? `${forecastDay.day.maxwind_mph} Mph`
           : `${forecastDay.day.maxwind_kph} Kph`}
       </p>
@@ -80,7 +80,7 @@ function ForecastWeatherCard({ forecastDay, american, index }) {
         <div className="font-bold">{index === 0 ? "Tomorrow" : weekDay}</div>
         <div className="flex items-center gap-4">
           <p className="font-semibold">
-            {american
+            {options.isF
               ? `${forecastDay.day.avgtemp_f.toFixed(0)}°F`
               : `${forecastDay.day.avgtemp_c.toFixed(0)}°C`}
           </p>
