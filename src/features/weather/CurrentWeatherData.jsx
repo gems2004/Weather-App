@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   faGear,
   faMoon,
@@ -9,10 +9,12 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import WeatherIcon from "./WeatherIcon";
 import WeatherOptions from "./WeatherOptions";
+import { DarkContext } from "../../App";
 
 const WeatherData = ({ weather, location, options, setOptions, astronomy }) => {
   // console.log(weather);
   // console.log(astronomy);
+  const { dark, setDark } = useContext(DarkContext);
   const days = [
     "Sunday",
     "Monday",
@@ -39,7 +41,11 @@ const WeatherData = ({ weather, location, options, setOptions, astronomy }) => {
     </div>
   );
   const humidity = (
-    <div className="flex flex-col justify-center items-center border-x-2 border-black w-1/4 min-h-[65px]">
+    <div
+      className={`flex flex-col justify-center items-center border-x-2 ${
+        dark ? "" : "border-black"
+      } w-1/4 min-h-[65px]`}
+    >
       <FontAwesomeIcon icon={faWater} />
       <p className="mx-8">{weather.humidity}%</p>
     </div>
@@ -61,14 +67,9 @@ const WeatherData = ({ weather, location, options, setOptions, astronomy }) => {
       )}
     </div>
   );
-  const optionsPopup = options.isClicked ? (
-    <WeatherOptions options={options} setOptions={setOptions} />
-  ) : (
-    ""
-  );
+
   return (
-    <>
-      {optionsPopup}
+    <div className={`${dark ? " text-white " : ""} relative`}>
       <section className=" my-8 h-[85vh] overflow-hidden">
         <div className="text-center">
           <div className="grid grid-cols-3">
@@ -89,7 +90,7 @@ const WeatherData = ({ weather, location, options, setOptions, astronomy }) => {
               <FontAwesomeIcon
                 icon={faGear}
                 size="2xl"
-                style={{ color: "#000000" }}
+                style={dark ? { color: "#ffffff" } : { color: "#000000" }}
               />
             </span>
           </div>
@@ -98,24 +99,36 @@ const WeatherData = ({ weather, location, options, setOptions, astronomy }) => {
             <span className="px-2">{time}</span>
           </div>
         </div>
-        <div className="flex items-center justify-between gap-4 bg-white -ml-24 mt-6 pl-28 -mr-6 py-14 rounded-r-[100px]">
-          <p className="text-5xl font-semibold ml-4">
+        <div
+          className={`flex items-center md:justify-center md:gap-96 justify-between gap-4 ${
+            dark ? "bg-black" : "bg-white"
+          } -ml-24 mt-6 pl-28 -mr-6 py-14 lg:py-40 lg:rounded-r-full lg:mr-40 rounded-r-[100px]`}
+        >
+          <p className="text-5xl font-semibold ml-4 lg:text-6xl">
             {options.isF ? ` ${weather.temp_f}°F` : ` ${weather.temp_c}°C`}
           </p>
-          <span className="mr-12">
-            <WeatherIcon condition={weather.condition.text} width="170px" />
-          </span>
+          <div className="mr-12 lg:scale-150">
+            <WeatherIcon
+              condition={weather.condition.text}
+              width="170px"
+              day={weather.is_day}
+            />
+          </div>
         </div>
+        <section className="mt-24">
+          <hr
+            className={`border-t-2 mb-6 w-32 flex mx-auto ${
+              dark ? "" : "border-black"
+            }`}
+          />
+          <div className="flex justify-evenly items-center text-lg bottom-0 w-screen lg:w-full">
+            <>{wind}</>
+            <>{humidity}</>
+            <>{astro}</>
+          </div>
+        </section>
       </section>
-      <section className="absolute bottom-20">
-        <hr className="border-black border-t-2 mb-6 w-32 flex mx-auto" />
-        <div className="flex justify-evenly items-center text-lg bottom-0 w-screen">
-          <>{wind}</>
-          <>{humidity}</>
-          <>{astro}</>
-        </div>
-      </section>
-    </>
+    </div>
   );
 };
 

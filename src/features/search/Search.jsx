@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { weatherApi, ipApi } from "../api/api";
 import Logo from "../../assets/Logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import { DarkContext } from "../../App";
 
 import { useNavigate } from "react-router-dom";
 const Search = () => {
   const navigate = useNavigate();
-
   const [searchQuery, setSearchQuery] = useState("");
   const [isMoreThanThree, setIsMoreThanThree] = useState(true);
 
@@ -40,9 +40,13 @@ const Search = () => {
   console.log(weatherIp);
   return (
     <section className="flex flex-col justify-center items-center h-screen">
-      <div className="flex flex-col justify-center items-center w-4/5 gap-6 bg-livid">
-        <h1 className="text-3xl font-bold drop-shadow-2xl">Weather App</h1>
-        <img src={Logo} width={200} alt="Logo" />
+      <div className="flex flex-col md:flex-row  items-center w-4/5 gap-80 md:gap-0 bg-livid">
+        <div className="flex flex-col items-center gap-10 md:w-full">
+          <h1 className="text-3xl md:text-6xl font-bold drop-shadow-2xl">
+            Weather App
+          </h1>
+          <img src={Logo} width={200} alt="Logo" />
+        </div>
 
         <form className="flex flex-col items-center justify-center gap-4 w-3/4">
           {isMoreThanThree ? (
@@ -65,7 +69,8 @@ const Search = () => {
             </span>
             <input
               type="text"
-              className={`border-2 border-black border-opacity-60 w-full rounded-md py-1 px-2 ${
+              placeholder="Search..."
+              className={`border-2 placeholder-black placeholder-opacity-70 border-black border-opacity-60 w-full bg-livid rounded-full py-1 px-2 ${
                 isMoreThanThree ? "" : "border-red-500"
               }`}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -73,7 +78,7 @@ const Search = () => {
             />
           </div>
           <button
-            className="w-full bg-blue-700 hover:bg-blue-900 text-white rounded-md py-1 active:opacity-40 transition-all ease-in-out"
+            className="w-full bg-blue-700 hover:bg-blue-900 text-white rounded-full py-1 active:opacity-40 transition-all ease-in-out"
             onClick={searchClickHandler}
           >
             Search

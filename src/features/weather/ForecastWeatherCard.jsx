@@ -9,11 +9,13 @@ import {
   faWind,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import WeatherIcon from "./WeatherIcon";
+import { DarkContext } from "../../App";
 
-function ForecastWeatherCard({ forecastDay, options, index }) {
+function ForecastWeatherCard({ forecastDay, options, index, className }) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const { dark, setDark } = useContext(DarkContext);
   // console.log(forecastDay);
   let [d, m, y] = forecastDay.date.split("-");
   const date = new Date(y, m - 1, d);
@@ -68,13 +70,9 @@ function ForecastWeatherCard({ forecastDay, options, index }) {
     </>
   );
   return (
-    <div
-      className={`${
-        index === 0 ? "border-y-2" : index === 1 ? "border-0" : "border-y-2"
-      } border-black`}
-    >
+    <div className={className}>
       <div
-        className={`flex justify-between items-center cursor-pointer  py-4`}
+        className={`flex justify-between items-center cursor-pointer  py-4 lg:py-12 lg:text-2xl`}
         onClick={() => setIsExpanded((prev) => !prev)}
       >
         <div className="font-bold">{index === 0 ? "Tomorrow" : weekDay}</div>
@@ -84,15 +82,16 @@ function ForecastWeatherCard({ forecastDay, options, index }) {
               ? `${forecastDay.day.avgtemp_f.toFixed(0)}°F`
               : `${forecastDay.day.avgtemp_c.toFixed(0)}°C`}
           </p>
-          <WeatherIcon
-            condition={forecastDay.day.condition.text}
-            width="50px"
-          />
-          {isExpanded ? (
-            <FontAwesomeIcon icon={faChevronUp} />
-          ) : (
-            <FontAwesomeIcon icon={faChevronDown} />
-          )}
+          <div className="w-[50px] lg:w-[100px]">
+            <WeatherIcon day={1} condition={forecastDay.day.condition.text} />
+          </div>
+          <div>
+            {isExpanded ? (
+              <FontAwesomeIcon icon={faChevronUp} />
+            ) : (
+              <FontAwesomeIcon icon={faChevronDown} />
+            )}
+          </div>
         </div>
       </div>
       <div
