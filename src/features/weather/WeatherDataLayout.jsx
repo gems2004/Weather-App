@@ -22,7 +22,6 @@ function WeatherDataLayout() {
   const { data } = useGetForecastWeatherDataQuery(city);
 
   useEffect(() => {
-    console.log(data?.current.is_day);
     if (data?.current.is_day === 0) {
       setDark(true);
     } else {

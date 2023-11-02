@@ -3,7 +3,6 @@ import ForecastWeatherCard from "./ForecastWeatherCard";
 import { useContext } from "react";
 import { DarkContext } from "../../App";
 function ForecastWeatherData({ forecast, options }) {
-  // console.log(forecast);
   const { dark, setDark } = useContext(DarkContext);
   return (
     <div className="lg:w-full lg:h-full lg:flex lg:flex-col lg:justify-center lg:items-center">

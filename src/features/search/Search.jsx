@@ -14,7 +14,6 @@ const Search = () => {
   const [triggerSearchIp, { data: weatherIp }] =
     weatherApi.endpoints.getLocationByIp.useLazyQuery();
   const [triggerIp, { data: ip }] = ipApi.endpoints.getIp.useLazyQuery();
-  console.log(ip);
 
   function searchClickHandler(e) {
     e.preventDefault();
@@ -36,8 +35,6 @@ const Search = () => {
       navigate(`/mainPage/${weatherIp.city}`);
     }
   }, [ip, weatherIp]);
-  console.log(ip);
-  console.log(weatherIp);
   return (
     <section className="flex flex-col justify-center items-center h-screen">
       <div className="flex flex-col md:flex-row  items-center w-4/5 gap-80 md:gap-0 bg-livid">

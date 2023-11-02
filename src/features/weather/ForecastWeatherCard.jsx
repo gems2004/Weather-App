@@ -16,7 +16,7 @@ import { DarkContext } from "../../App";
 function ForecastWeatherCard({ forecastDay, options, index, className }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const { dark, setDark } = useContext(DarkContext);
-  // console.log(forecastDay);
+
   let [d, m, y] = forecastDay.date.split("-");
   const date = new Date(y, m - 1, d);
   const weekDay = date.toLocaleString("default", { weekday: "long" });

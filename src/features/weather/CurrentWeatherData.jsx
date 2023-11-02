@@ -12,8 +12,6 @@ import WeatherOptions from "./WeatherOptions";
 import { DarkContext } from "../../App";
 
 const WeatherData = ({ weather, location, options, setOptions, astronomy }) => {
-  // console.log(weather);
-  // console.log(astronomy);
   const { dark, setDark } = useContext(DarkContext);
   const days = [
     "Sunday",

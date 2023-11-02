@@ -10,8 +10,6 @@ const Results = () => {
   const { data, isLoading } = useGetLocationByNameQuery(query);
   const navigate = useNavigate();
 
-  console.log(data);
-
   if (isLoading) {
     return (
       <div className="grid place-content-center h-screen">
