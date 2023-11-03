@@ -4,16 +4,19 @@ import Logo from "../../assets/Logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { DarkContext } from "../../App";
+import Loader from "../../assets/loader.json";
 
 import { useNavigate } from "react-router-dom";
+import Lottie from "lottie-react";
 const Search = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
   const [isMoreThanThree, setIsMoreThanThree] = useState(true);
 
-  const [triggerSearchIp, { data: weatherIp }] =
+  const [triggerSearchIp, { data: weatherIp, isLoading: searchByIpLoader }] =
     weatherApi.endpoints.getLocationByIp.useLazyQuery();
-  const [triggerIp, { data: ip }] = ipApi.endpoints.getIp.useLazyQuery();
+  const [triggerIp, { data: ip, isLoading: ipLoader }] =
+    ipApi.endpoints.getIp.useLazyQuery();
 
   function searchClickHandler(e) {
     e.preventDefault();
@@ -35,6 +38,13 @@ const Search = () => {
       navigate(`/mainPage/${weatherIp.city}`);
     }
   }, [ip, weatherIp]);
+  if (ipLoader || searchByIpLoader) {
+    return (
+      <div className="grid place-content-center w-screen h-screen">
+        <Lottie className="w-80" animationData={Loader} />
+      </div>
+    );
+  }
   return (
     <section className="flex flex-col justify-center items-center h-screen">
       <div className="flex flex-col md:flex-row  items-center w-4/5 gap-60 md:gap-0 bg-livid">
