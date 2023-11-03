@@ -10,7 +10,7 @@ const WeatherOptions = ({ options, setOptions }) => {
     <section className="w-screen h-screen fixed bg-black top-0 bg-opacity-50 grid z-50">
       <div
         className={`w-3/4 h-2/3 lg:w-1/3 ${
-          dark ? "bg-[#131d37] text-white" : ""
+          dark ? "bg-[#131d37] text-white" : "bg-livid"
         } rounded-2xl place-self-center flex flex-col`}
       >
         <div

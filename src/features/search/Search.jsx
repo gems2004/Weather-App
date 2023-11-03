@@ -37,7 +37,7 @@ const Search = () => {
   }, [ip, weatherIp]);
   return (
     <section className="flex flex-col justify-center items-center h-screen">
-      <div className="flex flex-col md:flex-row  items-center w-4/5 gap-80 md:gap-0 bg-livid">
+      <div className="flex flex-col md:flex-row  items-center w-4/5 gap-60 md:gap-0 bg-livid">
         <div className="flex flex-col items-center gap-10 md:w-full">
           <h1 className="text-3xl md:text-6xl font-bold drop-shadow-2xl">
             Weather App

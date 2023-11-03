@@ -8,7 +8,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import WeatherIcon from "./WeatherIcon";
-import WeatherOptions from "./WeatherOptions";
 import { DarkContext } from "../../App";
 
 const WeatherData = ({ weather, location, options, setOptions, astronomy }) => {
@@ -35,7 +34,9 @@ const WeatherData = ({ weather, location, options, setOptions, astronomy }) => {
   const wind = (
     <div className="flex flex-col justify-center items-center w-1/4">
       <FontAwesomeIcon icon={faWind} />
-      {options.isMph ? ` ${weather.gust_mph} Mph` : ` ${weather.gust_kph} Kph`}
+      {options.isMph
+        ? ` ${weather?.gust_mph} Mph`
+        : ` ${weather?.gust_kph} Kph`}
     </div>
   );
   const humidity = (
@@ -45,12 +46,12 @@ const WeatherData = ({ weather, location, options, setOptions, astronomy }) => {
       } w-1/4 min-h-[65px]`}
     >
       <FontAwesomeIcon icon={faWater} />
-      <p className="mx-8">{weather.humidity}%</p>
+      <p className="mx-8">{weather?.humidity}%</p>
     </div>
   );
   const astro = (
     <div className="flex flex-col justify-center items-center w-1/4">
-      {weather.is_day === 1 ? (
+      {weather?.is_day === 1 ? (
         <>
           <FontAwesomeIcon icon={faSun} />
           <p>Sunset:</p>
@@ -68,11 +69,11 @@ const WeatherData = ({ weather, location, options, setOptions, astronomy }) => {
 
   return (
     <div className={`${dark ? " text-white " : ""} relative`}>
-      <section className=" my-8 h-[85vh] overflow-hidden">
+      <section className=" mt-8 mb-4 h-[85vh] overflow-hidden">
         <div className="text-center">
           <div className="grid grid-cols-3">
             <h1 className="text-3xl font-black col-start-2 col-end-3">
-              {location.name}
+              {location?.name}
             </h1>
             <span
               className="place-self-end mr-4 transition-transform hover:scale-125 hover:cursor-pointer"
@@ -103,13 +104,13 @@ const WeatherData = ({ weather, location, options, setOptions, astronomy }) => {
           } -ml-24 mt-6 pl-28 -mr-6 py-14 lg:py-40 lg:rounded-r-full lg:mr-40 rounded-r-[100px]`}
         >
           <p className="text-5xl font-semibold ml-4 lg:text-6xl">
-            {options.isF ? ` ${weather.temp_f}°F` : ` ${weather.temp_c}°C`}
+            {options.isF ? ` ${weather?.temp_f}°F` : ` ${weather?.temp_c}°C`}
           </p>
           <div className="mr-12 lg:scale-150">
             <WeatherIcon
-              condition={weather.condition.text}
+              condition={weather?.condition.text}
               width="170px"
-              day={weather.is_day}
+              day={weather?.is_day}
             />
           </div>
         </div>

@@ -8,7 +8,7 @@ export const DarkContext = createContext("");
 function App() {
   const [dark, setDark] = useState(false);
   return (
-    <>
+    <div>
       <DarkContext.Provider value={{ dark, setDark }}>
         <Routes>
           <Route path="/" element={<Search />} />
@@ -16,7 +16,7 @@ function App() {
           <Route path="/mainPage/:city" element={<WeatherDataLayout />} />
         </Routes>
       </DarkContext.Provider>
-    </>
+    </div>
   );
 }
 
