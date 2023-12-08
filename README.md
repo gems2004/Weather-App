@@ -1,6 +1,6 @@
 # Weather App Website
 
-This repository contains the code for a weather app website that integrates with a weather API. The website is built using React 18 and Redux Toolkit for state management. It also utilizes Tailwind CSS for styling.
+This repository contains the code for a weather app website that integrates with a weather API. The website is built using vite React 18 and Redux Toolkit for state management. It also utilizes Tailwind CSS for styling.
 
 ## Features
 
